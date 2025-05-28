@@ -1,9 +1,9 @@
 package database
 
 import (
-	"log"
 	"os"
 
+	"github.com/arjunksofficial/lumelassignment/pkg/config"
 	_ "github.com/lib/pq"
 	"github.com/pkg/errors"
 	"gorm.io/driver/postgres"
@@ -13,11 +13,10 @@ import (
 var PG *gorm.DB
 
 func InitPostgres() error {
-	dsn, err := ReadPostgresConfigFromEnv()
+	dsn, err := ReadConfig()
 	if err != nil {
 		return errors.Wrap(err, "failed to read Postgres config from environment variables")
 	}
-	log.Println(dsn)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return errors.Wrap(err, "failed to connect to Postgres database")
@@ -46,12 +45,13 @@ func ClosePostgres() error {
 	return sqlDB.Close()
 }
 
-func ReadPostgresConfigFromEnv() (string, error) {
-	postgresHost := os.Getenv("POSTGRES_HOST")
-	postgresUser := os.Getenv("POSTGRES_USER")
-	postgresPassword := os.Getenv("POSTGRES_PASSWORD")
-	postgresDB := os.Getenv("POSTGRES_DB")
-	postgresPort := os.Getenv("POSTGRES_PORT")
+func ReadConfig() (string, error) {
+	postgresHost := config.GetConfig().Postgres.Host
+	postgresUser := config.GetConfig().Postgres.User
+	postgresPassword := config.GetConfig().Postgres.Password
+	postgresDB := config.GetConfig().Postgres.DB
+	postgresPort := config.GetConfig().Postgres.Port
+
 	if postgresHost == "" || postgresUser == "" || postgresPassword == "" || postgresDB == "" || postgresPort == "" {
 		return "", os.ErrInvalid
 	}

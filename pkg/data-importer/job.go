@@ -126,7 +126,6 @@ func (i *Importer) processSalesEntries(entry []models.SalesEntry) error {
 		if err != nil {
 			return fmt.Errorf("failed to parse date of sale %s: %w", sale.DateOfSale, err)
 		}
-		// Process order
 		order := ordermodels.Order{
 			ID:            sale.OrderID,
 			ProductID:     product.ID,
@@ -138,12 +137,10 @@ func (i *Importer) processSalesEntries(entry []models.SalesEntry) error {
 		}
 		orders = append(orders, order)
 	}
-	// Convert maps to slices
 	for _, product := range productsMap {
 		products = append(products, product)
 	}
 	for _, customer := range customersMap {
-		fmt.Println(customer.ID)
 		customers = append(customers, customer)
 	}
 
