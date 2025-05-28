@@ -125,8 +125,8 @@ func (s *store) RevenueByRegion(filter urlquery.DateRange) ([]models.RegionReven
 	var revenues []models.RegionRevenue
 	query := s.db.Model(&models.Order{}).
 		Joins("JOIN products ON orders.product_id = products.id").
-		Select("products.region AS region, SUM((orders.quantity_sold * (products.unit_price - products.discount + products.shipping_cost))) AS revenue").
-		Group("products.region")
+		Select("orders.region AS region, SUM((orders.quantity_sold * (products.unit_price - products.discount + products.shipping_cost))) AS revenue").
+		Group("orders.region")
 	if filter.StartDate.IsZero() && filter.EndDate.IsZero() {
 		query = query.Where("orders.date_of_sale BETWEEN ? AND ?", filter.StartDate, filter.EndDate)
 	}
@@ -150,8 +150,8 @@ func (s *store) RevenueByTrends(filter urlquery.DateRange) ([]models.TrendRevenu
 	var revenues []models.TrendRevenue
 	query := s.db.Model(&models.Order{}).
 		Joins("JOIN products ON orders.product_id = products.id").
-		Select("DATE_FORMAT(orders.date_of_sale, '%Y-%m') AS month, SUM((orders.quantity_sold * (products.unit_price - products.discount + products.shipping_cost))) AS revenue").
-		Group("DATE_FORMAT(orders.date_of_sale, '%Y-%m')")
+		Select("TO_CHAR(orders.date_of_sale, 'YYYY-MM') AS month, SUM((orders.quantity_sold * (products.unit_price - products.discount + products.shipping_cost))) AS revenue").
+		Group("TO_CHAR(orders.date_of_sale, 'YYYY-MM')")
 	if filter.StartDate.IsZero() && filter.EndDate.IsZero() {
 		query = query.Where("orders.date_of_sale BETWEEN ? AND ?", filter.StartDate, filter.EndDate)
 	}
