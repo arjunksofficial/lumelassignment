@@ -1,0 +1,204 @@
+basePath: /api/v1
+definitions:
+  github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.CategoryRevenue:
+    properties:
+      category:
+        type: string
+      revenue:
+        type: number
+    type: object
+  github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.ProductRevenue:
+    properties:
+      product_id:
+        type: string
+      product_name:
+        type: string
+      revenue:
+        type: number
+    type: object
+  github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RegionRevenue:
+    properties:
+      region:
+        type: string
+      revenue:
+        type: number
+    type: object
+  github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByCategoryResp:
+    properties:
+      categories:
+        items:
+          $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.CategoryRevenue'
+        type: array
+    type: object
+  github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByProductResp:
+    properties:
+      products:
+        items:
+          $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.ProductRevenue'
+        type: array
+    type: object
+  github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByRegionResp:
+    properties:
+      regions:
+        items:
+          $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RegionRevenue'
+        type: array
+    type: object
+  github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByTrendsResp:
+    properties:
+      trends:
+        items:
+          $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.TrendRevenue'
+        type: array
+    type: object
+  github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.TrendRevenue:
+    properties:
+      month:
+        type: string
+      revenue:
+        type: number
+    type: object
+  github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse:
+    properties:
+      message:
+        type: string
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:8000
+info:
+  contact:
+    name: API Support
+  description: This is a sample server for serving revenue stats
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Lumel Assignment
+  version: "1.0"
+paths:
+  /api/v1/orders/revenue-by-category:
+    get:
+      description: get revenue by category for a given date range
+      operationId: revenue-by-category
+      parameters:
+      - description: Start Date
+        in: query
+        name: start_date
+        type: string
+      - description: End Date
+        in: query
+        name: end_date
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByCategoryResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse'
+      summary: stats of revenue by each category
+      tags:
+      - revenue
+  /api/v1/orders/revenue-by-product:
+    get:
+      description: get revenue by product for a given date range
+      operationId: revenue-by-product
+      parameters:
+      - description: Start Date
+        in: query
+        name: start_date
+        type: string
+      - description: End Date
+        in: query
+        name: end_date
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByProductResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse'
+      summary: stats of revenue by each product
+      tags:
+      - revenue
+  /api/v1/orders/revenue-by-region:
+    get:
+      description: get revenue by region for a given date range
+      operationId: revenue-by-region
+      parameters:
+      - description: Start Date
+        in: query
+        name: start_date
+        type: string
+      - description: End Date
+        in: query
+        name: end_date
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByRegionResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse'
+      summary: stats of revenue by each region
+      tags:
+      - revenue
+  /api/v1/orders/revenue-by-trends:
+    get:
+      description: get revenue by monthly trend for a given date range
+      operationId: revenue-by-trends
+      parameters:
+      - description: Start Date
+        in: query
+        name: start_date
+        type: string
+      - description: End Date
+        in: query
+        name: end_date
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByTrendsResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse'
+      summary: stats of revenue by each monthly trend
+      tags:
+      - revenue
+swagger: "2.0"

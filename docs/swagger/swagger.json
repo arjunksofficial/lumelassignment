@@ -1,0 +1,312 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server for serving revenue stats",
+        "title": "Lumel Assignment",
+        "contact": {
+            "name": "API Support"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/api/v1",
+    "paths": {
+        "/api/v1/orders/revenue-by-category": {
+            "get": {
+                "description": "get revenue by category for a given date range",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "revenue"
+                ],
+                "summary": "stats of revenue by each category",
+                "operationId": "revenue-by-category",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Start Date",
+                        "name": "start_date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "End Date",
+                        "name": "end_date",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByCategoryResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/orders/revenue-by-product": {
+            "get": {
+                "description": "get revenue by product for a given date range",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "revenue"
+                ],
+                "summary": "stats of revenue by each product",
+                "operationId": "revenue-by-product",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Start Date",
+                        "name": "start_date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "End Date",
+                        "name": "end_date",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByProductResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/orders/revenue-by-region": {
+            "get": {
+                "description": "get revenue by region for a given date range",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "revenue"
+                ],
+                "summary": "stats of revenue by each region",
+                "operationId": "revenue-by-region",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Start Date",
+                        "name": "start_date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "End Date",
+                        "name": "end_date",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByRegionResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/orders/revenue-by-trends": {
+            "get": {
+                "description": "get revenue by monthly trend for a given date range",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "revenue"
+                ],
+                "summary": "stats of revenue by each monthly trend",
+                "operationId": "revenue-by-trends",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Start Date",
+                        "name": "start_date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "End Date",
+                        "name": "end_date",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByTrendsResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.CategoryRevenue": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "revenue": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.ProductRevenue": {
+            "type": "object",
+            "properties": {
+                "product_id": {
+                    "type": "string"
+                },
+                "product_name": {
+                    "type": "string"
+                },
+                "revenue": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RegionRevenue": {
+            "type": "object",
+            "properties": {
+                "region": {
+                    "type": "string"
+                },
+                "revenue": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByCategoryResp": {
+            "type": "object",
+            "properties": {
+                "categories": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.CategoryRevenue"
+                    }
+                }
+            }
+        },
+        "github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByProductResp": {
+            "type": "object",
+            "properties": {
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.ProductRevenue"
+                    }
+                }
+            }
+        },
+        "github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByRegionResp": {
+            "type": "object",
+            "properties": {
+                "regions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RegionRevenue"
+                    }
+                }
+            }
+        },
+        "github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.RevenueByTrendsResp": {
+            "type": "object",
+            "properties": {
+                "trends": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.TrendRevenue"
+                    }
+                }
+            }
+        },
+        "github_com_arjunksofficial_lumelassignment_internal_entities_orders_models.TrendRevenue": {
+            "type": "object",
+            "properties": {
+                "month": {
+                    "type": "string"
+                },
+                "revenue": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_arjunksofficial_lumelassignment_pkg_core_responsehelper.CommonResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "OpenAPI",
+        "url": "https://swagger.io/resources/open-api/"
+    }
+}
