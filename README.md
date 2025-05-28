@@ -16,13 +16,13 @@ To setup postgres
 source config/local/.env
 ```
 
-To run migrations
+To run migrations to create tables, indices, etc
 
 ```
 go run cmd/migrator/main.go
 ```
 
-To run importer (csv importer and upload to db)
+To run importer (csv importer and upload to db) to populate the database with data
 
 ```
 go run cmd/data-importer.go

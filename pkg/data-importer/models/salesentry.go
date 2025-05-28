@@ -1,19 +1,21 @@
 package models
 
 type SalesEntry struct {
-	OrderID         int `csv:"Order ID"`
-	ProductID       int
-	CustomerID      int
-	ProductName     string
-	Category        string
-	Region          string
-	DateOfSale      string // Use appropriate type for date, e.g., time.Time
-	QuantitySold    int
-	UnitPrice       float64
-	Discount        float64
-	ShippingCost    float64
-	PaymentMethod   string
-	CustomerName    string
-	CustomerEmail   string
-	CustomerAddress string
+	OrderID         int     `csv:"Order ID"`
+	ProductID       string  `csv:"Product ID"`
+	CustomerID      string  `csv:"Customer ID"`
+	ProductName     string  `csv:"Product Name"`
+	Category        string  `csv:"Category"`
+	Region          string  `csv:"Region"`
+	DateOfSale      string  `csv:"Date of Sale"`
+	QuantitySold    int     `csv:"Quantity Sold"`
+	UnitPrice       float64 `csv:"Unit Price"`
+	Discount        float64 `csv:"Discount"`
+	ShippingCost    float64 `csv:"Shipping Cost"`
+	PaymentMethod   string  `csv:"Payment Method"`
+	CustomerName    string  `csv:"Customer Name"`
+	CustomerEmail   string  `csv:"Customer Email"`
+	CustomerAddress string  `csv:"Customer Address"`
 }
+
+// Product Name,Category,Region,Date of Sale,Quantity Sold,Unit Price,Discount,Shipping Cost,Payment Method,Customer Name,Customer Email,Customer Address

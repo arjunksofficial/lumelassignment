@@ -8,6 +8,7 @@ import (
 
 type Store interface {
 	BulkCreate(customers []models.Order) error
+	BulkCreateOrUpdate(customers []models.Order) error
 }
 
 type store struct {
@@ -29,6 +30,20 @@ func (s *store) BulkCreate(customers []models.Order) error {
 	result := s.db.Create(&customers)
 	if result.Error != nil {
 		return result.Error // Return any error that occurred during the creation
+	}
+
+	return nil // Return nil if the operation was successful
+}
+
+func (s *store) BulkCreateOrUpdate(customers []models.Order) error {
+	if len(customers) == 0 {
+		return nil // No customers to create or update
+	}
+
+	// Use the Save method to insert or update multiple records
+	result := s.db.Save(&customers)
+	if result.Error != nil {
+		return result.Error // Return any error that occurred during the save operation
 	}
 
 	return nil // Return nil if the operation was successful
